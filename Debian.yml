@@ -1,0 +1,24 @@
+- name: Install apache on Debian
+  apt:
+    name: apache2
+    update_cache: yes
+    state: present
+- name: Stant and anable apache on Debian
+  systemd:
+    state: started
+    enabled: yes
+    name: apache2
+- name: Download Template on Debian
+  get_url:
+    url: https://www.free-css.com/assets/files/free-css-templates/download/page294/namari.zip
+    dest: /tmp/    
+- name: Install unzip on Debian
+  apt:
+    name: unzip
+    update_cache: yes
+    state: present    
+- name: Unarchive Template on Debian
+  unarchive:
+    src: /tmp/namari.zip
+    dest: /var/www/html    
+    remote_src: yes    
